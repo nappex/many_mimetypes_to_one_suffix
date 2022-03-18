@@ -1,0 +1,38 @@
+# Run this workflow every time a new commit pushed to your repository
+on:
+  push:
+    branches:
+    - main
+    - gh-pages
+
+name: Conflict-mimetypes
+
+jobs:
+  # Set the job key. The key is displayed as the job name
+  # when a job name is not provided
+  create-certain-files:
+    # Name the Job
+    name: Create files with conglict mimetypes
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set-up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+
+      - name: Run Python script
+        run: |
+          python server_content.py
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages  # The branch the action should deploy to.
+          FOLDER: server_content  # The folder the action should deploy.
