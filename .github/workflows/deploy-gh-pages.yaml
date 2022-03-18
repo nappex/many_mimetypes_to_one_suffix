@@ -12,7 +12,7 @@ jobs:
   # when a job name is not provided
   create-certain-files:
     # Name the Job
-    name: Create files with conglict mimetypes
+    name: Create files with conflict mimetypes
     # Set the type of machine to run on
     runs-on: ubuntu-latest
 
